@@ -14,9 +14,12 @@ jobs:
       with:
         python-version: "3.x"
     - name: Install dependencies and DVC
-      run: pip install -r requirements.txt dvc # <--- DVC ADDED HERE!
+      run: pip install -r requirements.txt dvc
     - name: Run DVC Training Pipeline Check
       run: |
+        # Ensure Git and DVC are ready in the environment
+        git init 
+        git checkout master
         dvc init
         dvc repro
     - name: Verify Model Artifact
