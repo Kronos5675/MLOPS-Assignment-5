@@ -1,0 +1,23 @@
+name: Model Training CI/CD Check
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  test-pipeline:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.x"
+    - name: Install dependencies and DVC
+      run: pip install -r requirements.txt
+    - name: Run DVC Training Pipeline Check
+      run: |
+        dvc init
+        dvc repro
+    - name: Verify Model Artifact
+      run: test -f model/regression_model.pkl

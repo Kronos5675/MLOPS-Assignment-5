@@ -1,0 +1,14 @@
+schema: '2.0'
+stages:
+  train:
+    cmd: python train.py
+    deps:
+    - path: train.py
+      hash: md5
+      md5: e63149c2bbca6456deababc35f6968ae
+      size: 523
+    outs:
+    - path: model/regression_model.pkl
+      hash: md5
+      md5: 9a778c6f7bbe5dc100f13c6c5ef4cda5
+      size: 729
