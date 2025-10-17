@@ -1,4 +1,4 @@
-name: Model Training CI/CD Check
+name: Streamlit Code Check
 
 on:
   push:
@@ -13,14 +13,9 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: "3.x"
-    - name: Install dependencies and DVC
-      run: pip install -r requirements.txt dvc
-    - name: Run DVC Training Pipeline Check
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+    - name: Run Training Script to Verify Model Creation
       run: |
-        # Ensure Git and DVC are ready in the environment
-        git init 
-        git checkout master
-        dvc init
-        dvc repro
-    - name: Verify Model Artifact
-      run: test -f model/regression_model.pkl
+        python train.py
+        test -f model/regression_model.pkl # Verify model was created
