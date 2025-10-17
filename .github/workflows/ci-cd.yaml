@@ -14,7 +14,7 @@ jobs:
       with:
         python-version: "3.x"
     - name: Install dependencies and DVC
-      run: pip install -r requirements.txt
+      run: pip install -r requirements.txt dvc # <--- DVC ADDED HERE!
     - name: Run DVC Training Pipeline Check
       run: |
         dvc init
